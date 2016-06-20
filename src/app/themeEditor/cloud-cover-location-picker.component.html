@@ -1,0 +1,22 @@
+<header (click)="onFocus()">
+  <h1>Cloud Cover Location</h1>
+  <h2>{{CloudCoverLocation[location]}}</h2>
+</header>
+<div class=edit>
+  <div class=header>
+    <h1>
+      <span>Cloud Cover Location</span>
+      <input type=button title=Done value="&#10004;" (click)="onSave()">
+      <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+    </h1>
+    <h2>{{CloudCoverLocation[oldLocation]}} - {{CloudCoverLocation[location]}}</h2>
+  </div>
+  <div class=controls>
+    <label>
+      <input type="radio" name="location" (change)="onUpdate(location = CloudCoverLocation.TimeBar)" [checked]="location === CloudCoverLocation.TimeBar" [value]="CloudCoverLocation.TimeBar"> Time Bar
+    </label>
+    <label>
+      <input type="radio" name="location" (change)="onUpdate(location = CloudCoverLocation.Graph)" [checked]="location === CloudCoverLocation.Graph" [value]="CloudCoverLocation.Graph"> Graph
+    </label>
+  </div>
+</div>

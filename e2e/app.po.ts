@@ -3,7 +3,7 @@ export class WeatherPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getBrowserTitle() {
+    return browser.getTitle();
   }
 }

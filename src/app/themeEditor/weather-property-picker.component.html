@@ -1,0 +1,11 @@
+<header (click)="onFocus()">
+  <h1>Weather Properties</h1>
+  <h2>Choose the weather properties to show on the widget.</h2>
+</header>
+<div class=header>
+  <h1>Pick your weather props</h1>
+  <h2>TODO</h2>
+  <input type=button title=Done value="&#10004;" (click)="onSave()">
+  <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+</div>
+<boolean-picker *ngFor="let opt of _properties" [title]="opt.displayTitle" [subtitle]="opt.summary" [value]="false" (update)="onUpdate(opt, $event)"></boolean-picker>

@@ -1,3 +1,22 @@
-<h1>
-  {{title}}
-</h1>
+<widget-display [theme]="currentTheme" [data]="data" (click)="clickWidget()"></widget-display>
+<div id=pages [class.hideMenu]="!showMenu">
+  <config
+    [class.current]="currentPage === Pages.Config"
+    (refresh)="data = $event"
+    (close)="currentPage = Pages.Themes"></config>
+  <theme-picker
+    [class.current]="currentPage === Pages.Themes"
+    (showConfig)="currentPage = Pages.Config"
+    (themePicked)="currentTheme = $event"
+    (createTheme)="onCreateTheme($event)"
+    (copyTheme)="onCopyTheme($event)"
+    (editTheme)="onEditTheme($event)"></theme-picker>
+  <theme-creator
+    [class.current]="currentPage === Pages.Editor"
+    [mode]="creatorMode"
+    [inputTheme]="inputTheme"
+    (update)="currentTheme = $event"
+    (cancel)="cancelThemeCreation()"
+    (delete)="themeDelete($event)"
+    (save)="themeSave($event)"></theme-creator>
+</div>

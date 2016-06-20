@@ -7,8 +7,8 @@ describe('weather App', function() {
     page = new WeatherPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should have a page title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getBrowserTitle()).toEqual('WW#1 Prototype');
   });
 });

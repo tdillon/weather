@@ -1,0 +1,117 @@
+<header (click)="onFocus()">
+  <h1>{{title}}</h1>
+  <h2>Click to set values that are used.</h2>
+</header>
+<div class=header>
+  <h1>{{title}}</h1>
+  <h2>TODO</h2>
+  <input type=button title=Done value="&#10004;" (click)="onSaveMe()">
+  <input type=button title=Cancel value="&#10008;" (click)="onCancelMe()">
+</div>
+
+
+<boolean-picker
+  [title]="'Use Global Dot Radius?'"
+  [subtitle]="'Use Global dot radius value?'"
+  [value]="property.dot.radius.global"
+  (update)="onUpdate(property.dot.radius.global = $event)"></boolean-picker>
+<number-picker
+  #dr
+  [class.hide]="property.dot.radius.global"
+  [class.show]="currentPicker === dr"
+  [title]="'Dot Radius'"
+  [value]="property.dot.radius.value"
+  [min]="1"
+  [max]="60"
+  [step]="1"
+  (focus)="onFocus(dr)"
+  (update)="onUpdate(property.dot.radius.value = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></number-picker>
+
+
+<boolean-picker
+  [title]="'Use Global Dot Color?'"
+  [subtitle]="'Use Global dot color value?'"
+  [value]="property.dot.color.global"
+  (update)="onUpdate(property.dot.color.global = $event)"></boolean-picker>
+<color-picker
+  #dc
+  [class.hide]="property.dot.color.global"
+  [class.show]="currentPicker === dc"
+  [title]="'Dot Color'"
+  [color]="property.dot.color.value"
+  (focus)="onFocus(dc)"
+  (update)="onUpdate(property.dot.color.value = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></color-picker>
+
+
+<boolean-picker
+  [title]="'use global seg vis?'"
+  [subtitle]="'TODO'"
+  [value]="property.segment.show.global"
+  (update)="onUpdate(property.segment.show.global = $event)"></boolean-picker>
+<boolean-picker
+  [class.hide]="property.segment.show.global"
+  [title]="'Segment Visibility'"
+  [subtitle]="'Are segments visible?'"
+  [value]="property.segment.show.value"
+  (update)="onUpdate(property.segment.show.value = $event)"></boolean-picker>
+
+
+<boolean-picker
+  [title]="'use global seg ang?'"
+  [subtitle]="'TODO'"
+  [value]="property.segment.angle.global"
+  (update)="onUpdate(property.segment.angle.global = $event)"></boolean-picker>
+<number-picker
+  #swa
+  [class.hide]="property.segment.angle.global"
+  [class.show]="currentPicker === swa"
+  [title]="'Segment Width Angle'"
+  [value]="property.segment.angle.value"
+  [min]="0"
+  [max]="90"
+  [step]="1"
+  (focus)="onFocus(swa)"
+  (update)="onUpdate(property.segment.angle.value = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></number-picker>
+
+
+<boolean-picker
+  [title]="'use global seg pad?'"
+  [subtitle]="'TODO'"
+  [value]="property.segment.padding.global"
+  (update)="onUpdate(property.segment.padding.global = $event)"></boolean-picker>
+<number-picker
+  #sp
+  [class.hide]="property.segment.padding.global"
+  [class.show]="currentPicker === sp"
+  [title]="'Segment Padding'"
+  [value]="property.segment.padding.value"
+  [min]="0"
+  [max]="10"
+  [step]="1"
+  (focus)="onFocus(sp)"
+  (update)="onUpdate(property.segment.padding.value = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></number-picker>
+
+
+<boolean-picker
+  [title]="'Use global seg color?'"
+  [subtitle]="'TODO'"
+  [value]="property.segment.color.global"
+  (update)="onUpdate(property.segment.color.global = $event)"></boolean-picker>
+<color-picker
+  #sc
+  [class.hide]="property.segment.color.global"
+  [class.show]="currentPicker === sc"
+  [title]="'Segment Color'"
+  [color]="property.segment.color.value"
+  (focus)="onFocus(sc)"
+  (update)="onUpdate(property.segment.color.value = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></color-picker>
