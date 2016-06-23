@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  "node"
+script:
+  - ng build -prod
+  - ng test --watch=false
+  - ng serve -prod
+  - ng e2e
+after-success:
+  - ng github-pages:deploy --message "travis-ci deployment"
