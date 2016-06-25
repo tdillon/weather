@@ -20,5 +20,5 @@ before_install:
 script:
   - ng build -prod
   - ng test --watch=false
-after-success:
+after_success:
   - ng github-pages:deploy --message "travis-ci deployment"
