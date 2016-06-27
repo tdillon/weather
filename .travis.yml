@@ -18,7 +18,7 @@ before_install:
   - set -e
   - echo "machine github.com" >> ~/.netrc
   - echo "   login tdillon" >> ~/.netrc
-  - echo "   password $github_token" >> ~/.netrc
+  - echo "   password $GH_TOKEN" >> ~/.netrc
 # before_script:
 #   - npm install -g angular-cli
 #   - npm install -g karma
