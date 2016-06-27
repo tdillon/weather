@@ -15,15 +15,15 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   #!/bin/bash
-  #- set -e
-  #- echo "machine github.com" >> ~/.netrc
-  #- echo "   login tdillon" >> ~/.netrc
-  #- echo "   password $github_token" >> ~/.netrc
+  - set -e
+  - echo "machine github.com" >> ~/.netrc
+  - echo "   login tdillon" >> ~/.netrc
+  - echo "   password $github_token" >> ~/.netrc
 # before_script:
 #   - npm install -g angular-cli
 #   - npm install -g karma
 script:
   - ng build -prod
-  - ng test --watch=false
+  #- ng test --watch=false
 after_success:
   - ng github-pages:deploy --message "travis-ci deployment"
