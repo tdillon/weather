@@ -1,4 +1,4 @@
-avissudo: required
+sudo: required
 dist: trusty
 language: node_js
 node_js:
@@ -24,6 +24,6 @@ before_install:
 #   - npm install -g karma
 script:
   - ng build -prod
-  #- ng test --watch=false
+  - ng test --watch=false
 after_success:
-  - ng github-pages:deploy --message "travis-ci deployment"
+  - ng github-pages:deploy --message "travis-ci deployment" --gh-username=tdillon
