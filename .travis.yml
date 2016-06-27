@@ -21,4 +21,4 @@ script:
   - ng build -prod
   - ng test --watch=false
 after_success:
-  - ng github-pages:deploy --message "travis-ci deployment" --gh-token=${GH_TOKEN} --gh-username=tdillon
+  - ng github-pages:deploy --message "travis-ci deployment" --gh-token=$GH_TOKEN --gh-username=tdillon
