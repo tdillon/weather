@@ -26,4 +26,5 @@ script:
   - ng build -prod
   - ng test --watch=false
 after_success:
+  - git push origin --delete gh-pages
   - ng github-pages:deploy --message "travis-ci deployment" --gh-username=tdillon
