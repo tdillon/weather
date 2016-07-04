@@ -116,7 +116,7 @@ export class ThemeCreatorComponent {
     }
 
     for (let o of from.options) {
-      let newToOption = {
+      let newToOption: ConfigOption = {
         title: o.title,
         dot: {
           color: {
@@ -133,10 +133,6 @@ export class ThemeCreatorComponent {
             global: o.segment.show.global,
             value: o.segment.show.value
           },
-          color: {
-            global: o.segment.color.global,
-            value: o.segment.color.value.copyOf()
-          },
           angle: {
             global: o.segment.angle.global,
             value: o.segment.angle.value
@@ -144,17 +140,17 @@ export class ThemeCreatorComponent {
           padding: {
             global: o.segment.padding.global,
             value: o.segment.padding.value
-          },
-          opacity: o.segment.opacity
+          }
         }
       }
 
-      if (newToOption.segment.opacity === undefined) {
-        delete newToOption.segment.opacity;
-      }
-
-      if (newToOption.segment.color === undefined) {
-        delete newToOption.segment.color;
+      if (typeof o.segment.opacity !== 'undefined') {
+        newToOption.segment.opacity = o.segment.opacity;
+      } else {
+        newToOption.segment.color = {
+          global: o.segment.color.global,
+          value: o.segment.color.value.copyOf()
+        }
       }
 
       to.options.push(newToOption);

@@ -1,427 +1,441 @@
-[{
-  "name": "Jumbo",
-  "themeType": 0,
-  "widgetType": 0,
-  "cloudCoverLocation": 0,
-  "fontSize": 35,
-  "globals": {
-    "dot": {
-      "color": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 1
-      },
-      "radius": 30
-    },
-    "segment": {
-      "show": true,
-      "color": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 0.3
-      },
-      "angle": 34,
-      "padding": 8
-    }
-  },
-  "options": [{
-    "title": "pressure",
-    "dot": {
-      "color": {
-        "global": false,
-        "value": {
+[
+  {
+    "name": "Jumbo",
+    "themeType": 0,
+    "widgetType": 0,
+    "cloudCoverLocation": 0,
+    "fontSize": 35,
+    "globals": {
+      "dot": {
+        "color": {
           "r": 255,
-          "g": 119,
-          "b": 131,
+          "g": 255,
+          "b": 255,
           "a": 1
-        }
+        },
+        "radius": 30
       },
-      "radius": {
-        "global": false,
-        "value": 15
-      }
-    },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "color": {
-        "global": false,
-        "value": {
+      "segment": {
+        "show": true,
+        "color": {
           "r": 255,
-          "g": 112,
-          "b": 144,
+          "g": 255,
+          "b": 255,
           "a": 0.3
-        }
-      },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "temperatureMax",
-    "dot": {
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "radius": {
-        "global": true,
-        "value": 5
+        },
+        "angle": 34,
+        "padding": 8
       }
     },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
+    "options": [
+      {
+        "title": "pressure",
+        "dot": {
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 119,
+              "b": 131,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": false,
+            "value": 15
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 112,
+              "b": 144,
+              "a": 0.3
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
         }
       },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "temperatureMin",
-    "dot": {
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
+      {
+        "title": "windSpeed",
+        "dot": {
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 114,
+              "b": 7,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": false,
+            "value": false
+          },
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
         }
       },
-      "radius": {
-        "global": true,
-        "value": 5
+      {
+        "title": "precipProbability",
+        "dot": {
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "opacity": 0.3,
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
+        }
+      },
+      {
+        "title": "temperatureMax",
+        "dot": {
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
+        }
+      },
+      {
+        "title": "temperatureMin",
+        "dot": {
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
+        }
       }
+    ],
+    "daylight": {
+      "r": 0,
+      "g": 128,
+      "b": 255,
+      "a": 0.14
     },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
+    "nightlight": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0.14
     }
-  }, {
-    "title": "windSpeed",
-    "dot": {
-      "color": {
-        "global": false,
-        "value": {
-          "r": 255,
-          "g": 114,
-          "b": 7,
-          "a": 1
-        }
-      },
-      "radius": {
-        "global": true,
-        "value": 5
-      }
-    },
-    "segment": {
-      "show": {
-        "global": false,
-        "value": false
-      },
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "precipProbability",
-    "dot": {
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "radius": {
-        "global": true,
-        "value": 5
-      }
-    },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "opacity": 0.3,
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }],
-  "daylight": {
-    "r": 0,
-    "g": 128,
-    "b": 255,
-    "a": 0.14
   },
-  "nightlight": {
-    "r": 0,
-    "g": 0,
-    "b": 0,
-    "a": 0.14
-  }
-}, {
-  "name": "Jumbo",
-  "themeType": 0,
-  "widgetType": 1,
-  "cloudCoverLocation": 1,
-  "fontSize": 37,
-  "globals": {
-    "dot": {
-      "color": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 1
-      },
-      "radius": 14
-    },
-    "segment": {
-      "show": true,
-      "color": {
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 0.3
-      },
-      "angle": 40,
-      "padding": 4
-    }
-  },
-  "options": [{
-    "title": "precipProbability",
-    "dot": {
-      "color": {
-        "global": true,
-        "value": {
+  {
+    "name": "Jumbo",
+    "themeType": 0,
+    "widgetType": 1,
+    "cloudCoverLocation": 1,
+    "fontSize": 37,
+    "globals": {
+      "dot": {
+        "color": {
           "r": 255,
           "g": 255,
           "b": 255,
           "a": 1
-        }
+        },
+        "radius": 14
       },
-      "radius": {
-        "global": true,
-        "value": 5
-      }
-    },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "opacity": 0.3,
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "pressure",
-    "dot": {
-      "color": {
-        "global": false,
-        "value": {
+      "segment": {
+        "show": true,
+        "color": {
           "r": 255,
-          "g": 117,
-          "b": 134,
-          "a": 1
-        }
-      },
-      "radius": {
-        "global": true,
-        "value": 5
-      }
-    },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "color": {
-        "global": false,
-        "value": {
-          "r": 255,
-          "g": 115,
-          "b": 111,
+          "g": 255,
+          "b": 255,
           "a": 0.3
-        }
-      },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "temperature",
-    "dot": {
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "radius": {
-        "global": false,
-        "value": 20
+        },
+        "angle": 40,
+        "padding": 4
       }
     },
-    "segment": {
-      "show": {
-        "global": true,
-        "value": true
-      },
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
+    "options": [
+      {
+        "title": "pressure",
+        "dot": {
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 117,
+              "b": 134,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 115,
+              "b": 111,
+              "a": 0.3
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
         }
       },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
-    }
-  }, {
-    "title": "windSpeed",
-    "dot": {
-      "color": {
-        "global": false,
-        "value": {
-          "r": 255,
-          "g": 116,
-          "b": 0,
-          "a": 1
+      {
+        "title": "windSpeed",
+        "dot": {
+          "color": {
+            "global": false,
+            "value": {
+              "r": 255,
+              "g": 116,
+              "b": 0,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": false,
+            "value": false
+          },
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
         }
       },
-      "radius": {
-        "global": true,
-        "value": 5
+      {
+        "title": "precipProbability",
+        "dot": {
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": true,
+            "value": 5
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "opacity": 0.3,
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
+        }
+      },
+      {
+        "title": "temperature",
+        "dot": {
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "radius": {
+            "global": false,
+            "value": 20
+          }
+        },
+        "segment": {
+          "show": {
+            "global": true,
+            "value": true
+          },
+          "color": {
+            "global": true,
+            "value": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            }
+          },
+          "angle": {
+            "global": true,
+            "value": 40
+          },
+          "padding": {
+            "global": true,
+            "value": 5
+          }
+        }
       }
+    ],
+    "nightlight": {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0.96
     },
-    "segment": {
-      "show": {
-        "global": false,
-        "value": false
-      },
-      "color": {
-        "global": true,
-        "value": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
-          "a": 1
-        }
-      },
-      "angle": {
-        "global": true,
-        "value": 40
-      },
-      "padding": {
-        "global": true,
-        "value": 5
-      }
+    "daylight": {
+      "r": 0,
+      "g": 128,
+      "b": 255,
+      "a": 0.96
     }
-  }],
-  "nightlight": {
-    "r": 0,
-    "g": 0,
-    "b": 0,
-    "a": 0.96
-  },
-  "daylight": {
-    "r": 0,
-    "g": 128,
-    "b": 255,
-    "a": 0.96
   }
-}]
+]

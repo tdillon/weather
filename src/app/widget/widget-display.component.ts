@@ -30,7 +30,6 @@ import {ConfigOption} from '../Option.interface'
  *
  * TODO:Themes
  * Add ordering to weather properties.
- * Add 'opacity' to precipProbability segment color, remove 'color'
  *
  * TODO:Config
  * Add 'widget ratio' to the config screen
