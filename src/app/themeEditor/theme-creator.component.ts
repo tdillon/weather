@@ -116,7 +116,7 @@ export class ThemeCreatorComponent {
     }
 
     for (let o of from.options) {
-      to.options.push({
+      let newToOption = {
         title: o.title,
         dot: {
           color: {
@@ -144,9 +144,20 @@ export class ThemeCreatorComponent {
           padding: {
             global: o.segment.padding.global,
             value: o.segment.padding.value
-          }
+          },
+          opacity: o.segment.opacity
         }
-      });
+      }
+
+      if (newToOption.segment.opacity === undefined) {
+        delete newToOption.segment.opacity;
+      }
+
+      if (newToOption.segment.color === undefined) {
+        delete newToOption.segment.color;
+      }
+
+      to.options.push(newToOption);
     }
   }
 

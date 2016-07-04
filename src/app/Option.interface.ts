@@ -34,10 +34,11 @@ export interface ConfigOption {
       global: boolean;
       value: boolean;
     };
-    color: {
+    color?: {
       global: boolean;
       value: Color;
     };
+    opacity?: number;
     angle: {
       global: boolean;
       value: number;

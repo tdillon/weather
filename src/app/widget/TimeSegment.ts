@@ -4,6 +4,7 @@ import {DataPoint} from "../forecast.io.interface";
 import {Theme} from "../Theme.interface";
 import {Point} from "./Point"
 import {Box} from './Box'
+import {Color} from '../Color'
 
 export class TimeSegment {
   from: number;//unix epoch begin of timesegment
@@ -26,26 +27,26 @@ export class TimeSegment {
    * https://en.wikipedia.org/wiki/DBZ_(meteorology)
    */
   private _dbzs = [
-    { intensity: 69.9, color: 'rgb(253, 253, 253)' },
-    { intensity: 34, color: 'rgb(152, 84, 198)' },
-    { intensity: 16.6, color: 'rgb(248, 0, 253)' },
-    { intensity: 8, color: 'rgb(188, 0, 0)' },
-    { intensity: 4, color: 'rgb(212, 0, 0)' },
-    { intensity: 1.9, color: 'rgb(253, 0, 0)' },
-    { intensity: .92, color: 'rgb(253, 149, 0)' },
-    { intensity: .45, color: 'rgb(229, 188, 0)' },
-    { intensity: .22, color: 'rgb(253, 248, 2)' },
-    { intensity: .1, color: 'rgb(0, 142, 0)' },
-    { intensity: .05, color: 'rgb(1, 197, 1)' },
-    { intensity: .02, color: 'rgb(2, 253, 2)' },
-    { intensity: .01, color: 'rgb(3, 0, 244)' },
-    { intensity: .006, color: 'rgb(1, 159, 244)' },
-    { intensity: .003, color: 'rgb(4, 233, 231)' },
-    { intensity: 0, color: 'rgb(4, 233, 231)' }  //TODO I don't know what to do for this color/intensity.
+    { intensity: 69.9, color: Color.getColor({ r: 253, g: 253, b: 253 }) },
+    { intensity: 34, color: Color.getColor({ r: 152, g: 84, b: 198 }) },
+    { intensity: 16.6, color: Color.getColor({ r: 248, g: 0, b: 253 }) },
+    { intensity: 8, color: Color.getColor({ r: 188, g: 0, b: 0 }) },
+    { intensity: 4, color: Color.getColor({ r: 212, g: 0, b: 0 }) },
+    { intensity: 1.9, color: Color.getColor({ r: 253, g: 0, b: 0 }) },
+    { intensity: .92, color: Color.getColor({ r: 253, g: 149, b: 0 }) },
+    { intensity: .45, color: Color.getColor({ r: 229, g: 188, b: 0 }) },
+    { intensity: .22, color: Color.getColor({ r: 253, g: 248, b: 2 }) },
+    { intensity: .1, color: Color.getColor({ r: 0, g: 142, b: 0 }) },
+    { intensity: .05, color: Color.getColor({ r: 1, g: 197, b: 1 }) },
+    { intensity: .02, color: Color.getColor({ r: 2, g: 253, b: 2 }) },
+    { intensity: .01, color: Color.getColor({ r: 3, g: 0, b: 244 }) },
+    { intensity: .006, color: Color.getColor({ r: 1, g: 159, b: 244 }) },
+    { intensity: .003, color: Color.getColor({ r: 4, g: 233, b: 231 }) },
+    { intensity: 0, color: Color.getColor({ r: 4, g: 233, b: 231 }) }  //TODO I don't know what to do for this color/intensity.
   ];
 
   constructor(
-    _theme: Theme,
+    private _theme: Theme,
     private _data: DataPoint,
     public graphBox: Box,
     public timeBarBox: Box,
@@ -104,12 +105,16 @@ export class TimeSegment {
 
 
 
-  get precipIntensityMaxColor(): string {
-    return this._dbzs.find(i => i.intensity < this._data.precipIntensityMax).color;
+  get precipIntensityMaxColor(): Color {
+    let c = this._dbzs.find(i => i.intensity < this._data.precipIntensityMax).color;
+    c.a = this._theme.options.find(o => o.title === 'precipProbability').segment.opacity || 1;
+    return c;
   }
 
-  get precipIntensityColor(): string {
-    return this._dbzs.find(i => i.intensity < this._data.precipIntensity).color;
+  get precipIntensityColor(): Color {
+    let c = this._dbzs.find(i => i.intensity < this._data.precipIntensity).color;
+    c.a = this._theme.options.find(o => o.title === 'precipProbability').segment.opacity || 1;
+    return c;
   }
 
 
@@ -126,14 +131,6 @@ export class TimeSegment {
     return {
       x: this.graphBox.center.x,
       y: this.graphBox.top + Math.abs(.5 - this.moonPhase) * this.graphBox.height * 2
-    };
-  }
-
-
-  get precipitation() {
-    return {
-      x: this.graphBox.left + (this._data.precipIntensityMaxTime - this.from) * this._unitsPerSecond,
-      y: this.graphBox.top + (1 - this._data.precipProbability) * this.graphBox.height
     };
   }
 
@@ -217,7 +214,9 @@ export class TimeSegment {
 
   get precipProbability() {
     return {
-      x: this.graphBox.center.x,
+      x: (this._data.precipIntensityMaxTime ?
+        this.graphBox.left + (this._data.precipIntensityMaxTime - this.from) * this._unitsPerSecond :
+        this.graphBox.center.x),
       y: this.graphBox.top + (1 - this._data.precipProbability) * this.graphBox.height
     };
   }

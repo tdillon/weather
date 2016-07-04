@@ -101,6 +101,7 @@
 
 
 <boolean-picker
+  [class.hide]="property.title === 'precipProbability'"
   [title]="'Use global seg color?'"
   [subtitle]="'TODO'"
   [value]="property.segment.color.global"
@@ -115,3 +116,16 @@
   (update)="onUpdate(property.segment.color.value = $event)"
   (cancel)="onCancel()"
   (save)="onSave()"></color-picker>
+<number-picker
+  #so
+  [class.hide]="property.title !== 'precipProbability'"
+  [class.show]="currentPicker === so"
+  [title]="'Segment Opacity'"
+  [value]="property.segment.opacity"
+  [min]="0"
+  [max]="1"
+  [step]=".1"
+  (focus)="onFocus(so)"
+  (update)="onUpdate(property.segment.opacity = $event)"
+  (cancel)="onCancel()"
+  (save)="onSave()"></number-picker>
