@@ -1,6 +1,8 @@
 <header (click)="onFocus()">
   <h1>{{title}}</h1>
   <h2>Click to set values that are used.</h2>
+  <input type=button title=Up value="&#8593;" (click)="onUp(); $event.stopPropagation()">
+  <input type=button title=Down value="&#8595;" (click)="onDown(); $event.stopPropagation()">
 </header>
 <div class=header>
   <h1>{{title}}</h1>

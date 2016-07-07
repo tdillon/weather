@@ -1,9 +1,9 @@
 <div class=header>
   <h1>
     <span [ngSwitch]="mode">
-      <template [ngSwitchWhen]="ThemeCreatorMode.New">New</template>
-      <template [ngSwitchWhen]="ThemeCreatorMode.Edit">Edit</template>
-      <template [ngSwitchWhen]="ThemeCreatorMode.Copy">Copy</template>
+      <template [ngSwitchCase]="ThemeCreatorMode.New">New</template>
+      <template [ngSwitchCase]="ThemeCreatorMode.Edit">Edit</template>
+      <template [ngSwitchCase]="ThemeCreatorMode.Copy">Copy</template>
     </span>
     Theme
   </h1>
@@ -117,4 +117,6 @@
   (focus)="currentPicker = p"
   (update)="onUpdate($event)"
   (cancel)="currentPicker = null"
-  (save)="currentPicker = null"></weather-property-settings>
+  (save)="currentPicker = null"
+  (up)="move('up', $event)"
+  (down)="move('down', $event)"></weather-property-settings>

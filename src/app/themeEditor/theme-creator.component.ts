@@ -228,4 +228,11 @@ export class ThemeCreatorComponent {
   onUpdate() {
     this.update11.emit(this.theme);
   }
+
+  move(direction: string, opt: ConfigOption) {
+    console.log(direction, opt);
+    let idx = this.theme.options.findIndex(o => o === opt);
+    this.theme.options.splice(idx, 1);
+    this.theme.options.splice(idx + (direction === 'down' ? 1 : -1), 0, opt);
+  }
 }

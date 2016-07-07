@@ -20,6 +20,8 @@ export class WeatherPropertySettingsComponent {
   @Output('update') update2 = new EventEmitter<any>();
   @Output('cancel') cancel2 = new EventEmitter<any>();
   @Output('save') save2 = new EventEmitter<any>();
+  @Output('up') up2 = new EventEmitter<ConfigOption>();
+  @Output('down') down2 = new EventEmitter<ConfigOption>();
 
   @Input() default: GlobalOptions;
   @Input() property: ConfigOption;
@@ -54,5 +56,13 @@ export class WeatherPropertySettingsComponent {
 
   onSaveMe() {
     this.save2.emit(null);
+  }
+
+  onUp() {
+    this.up2.emit(this.property);
+  }
+
+  onDown() {
+    this.down2.emit(this.property);
   }
 }

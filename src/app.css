@@ -22,85 +22,7 @@ h2 {
   color: rgba(0, 0, 0, .6);
 }
 
-/*
- * Picker group headers
- */
 
-.pickerGroup > header {
-  background: #fff;
-  height: 100%;
-  padding: 8px;
-}
-.pickerGroup.show header {
-  transition: transform .5s .5s ease-out, padding 0s .5s ease-out, height 0s .5s ease-out;
-}
-.pickerGroup.hide > header, .pickerGroup:not(.show) > .pickerGroup > header {
-  height: 0;
-  padding: 0;
-  transform: translateX(-100%);
-  transition: transform .5s 0s ease-out, padding 0s .5s ease-out, height 0s .5s ease-out;
-}
-
-/*
- * when To show pickers
- */
-
-.pickerGroup.show > .picker {
-  transition: transform .5s .5s ease-out;
-}
-.pickerGroup:not(.show) > .picker, .pickerGroup.hide > .picker, .pickerGroup > .picker.hide {
-  transform: translateX(-100%);
-  transition: transform .5s 0s ease-out;
-}
-
-/*
- * picker headers
- */
-
-.picker > header {
-  background: #fff;
-  height: 100%;
-  padding: 8px;
-  transition: padding 0s .5s ease-out, height 0s .5s ease-out;
-}
-.pickerGroup:not(.show) > .picker > header, .pickerGroup.hide > .picker > header, .picker.hide > header {
-  height: 0;
-  padding: 0;
-  transition: padding 0s .5s ease-out, height 0s .5s ease-out;
-}
-
-/*
- * picker divs
- */
-
-.picker > div {
-  height: 0;
-  overflow: hidden;
-  transition: transform .5s 0s ease-out, height 0s .5s ease-out, margin 0s .5s ease-out;
-}
-.picker.show > div {
-  background: #fff;
-  transform: translateX(100%);
-  height: 100%;
-  transition: transform .5s .5s ease-out, height 0s .5s ease-out, margin 0s .5s ease-out;
-}
-
-/*
- * picker group divs
- */
-
-.pickerGroup.show > .header, .picker .edit .header, .picker .edit .controls {
-  height: 100%;
-  padding: 8px;
-  transition: transform .5s .5s ease-out, height 0s .5s ease-out, padding 0s .5s ease-out;
-}
-.pickerGroup:not(.show) > .header, .pickerGroup.hide > .header {
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-  transform: translateX(-100%);
-  transition: transform .5s 0s ease-out, height 0s .5s ease-out, padding 0s .5s ease-out;
-}
 .header {
   background: #09c;
   color: #fff;
@@ -112,6 +34,50 @@ h2 {
   height: 48px;
   width: 48px;
 }
-header.current {
+theme-picker > .current {
   background: pink;
+}
+
+
+
+.pickerGroup {}
+.pickerGroup > .header {opacity:0;}
+.pickerGroup.show > .header{opacity:1;}
+.pickerGroup.show {}
+.pickerGroup > header {opacity:1;}
+.pickerGroup.show > header{opacity:0;}
+.pickerGroup.hide {}
+
+.pickerGroup:not(.show) > .pickerGroup > header {
+  opacity:0;
+}
+
+.picker {opacity:0;}
+.pickerGroup.show > .picker,
+.picker.show {
+  opacity:1;
+}
+
+.picker > header {opacity:1;}
+.picker > .edit {opacity:0;}
+.picker.show > header {opacity:0;}
+.picker.show > .edit {opacity:1;}
+
+
+.pickerGroup > .header,
+.pickerGroup.show > header ,
+.pickerGroup:not(.show) > .pickerGroup > header,
+.picker,
+.picker > .edit,
+.picker.show > header {
+  transition: opacity 0 0.5s ease-out;
+}
+
+.pickerGroup.show > .header,
+.pickerGroup > header,
+.pickerGroup.show > .picker,
+.picker.show ,
+.picker > header ,
+.picker.show > .edit {
+  transition: opacity .5s .5s ease-out;
 }

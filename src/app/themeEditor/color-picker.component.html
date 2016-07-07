@@ -2,8 +2,8 @@
   <h1>{{title}}</h1>
   <h2 *ngIf="color">
     <span [ngSwitch]="showalpha">
-      <template [ngSwitchWhen]="true">{{color.rgba}}</template>
-      <template [ngSwitchWhen]="false">{{color.rgb}}</template>
+      <template [ngSwitchCase]="true">{{color.rgba}}</template>
+      <template [ngSwitchCase]="false">{{color.rgb}}</template>
     </span>
   </h2>
 </header>
@@ -15,11 +15,11 @@
       <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
     </h1>
     <h2 [ngSwitch]="showalpha">
-      <template [ngSwitchWhen]="true">
+      <template [ngSwitchCase]="true">
         {{oldColor.rgba}} - {{color.rgba}}
         <div class=color [style.background]="true ? color.rgba : none"></div>
       </template>
-      <template [ngSwitchWhen]="false">
+      <template [ngSwitchCase]="false">
         {{oldColor.rgb}} - {{color.rgb}}
         <div class=color [style.background]="true ? color.rgb : none"></div>
       </template>

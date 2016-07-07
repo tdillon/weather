@@ -8,16 +8,16 @@
     <input type=button title="Config" value="&#9881;" (click)="onShowConfig()">
   </h2>
 </div>
-<header *ngFor="let t of themes" (click)="onSelect(t)" [class.current]="current === t">
+<div *ngFor="let t of themes" (click)="onSelect(t)" [class.current]="current === t">
   <h1>
     <span [ngSwitch]="t.widgetType">
-      <template [ngSwitchWhen]="WidgetType.Hourly">🕒</template>
-      <template [ngSwitchWhen]="WidgetType.Daily">📅</template>
+      <template [ngSwitchCase]="WidgetType.Hourly">🕒</template>
+      <template [ngSwitchCase]="WidgetType.Daily">📅</template>
     </span>
     {{t.name}}
     <span [ngSwitch]="t.themeType">
-      <template [ngSwitchWhen]="ThemeType.Preset">🔒</template>
-      <template [ngSwitchWhen]="ThemeType.Custom">
+      <template [ngSwitchCase]="ThemeType.Preset">🔒</template>
+      <template [ngSwitchCase]="ThemeType.Custom">
         🔓
         <input type=button value=Edit (click)="onEditTheme(t)">
       </template>
@@ -25,4 +25,4 @@
     </span>
   </h1>
   <h2>TODO</h2>
-</header>
+</div>
