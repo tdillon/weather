@@ -1,4 +1,4 @@
-<widget-display [theme]="currentTheme" [data]="data" (click)="clickWidget()"></widget-display>
+<widget-display [theme]="currentTheme" [data]="data" [ratio]="_weatherService.ratio" (click)="clickWidget()"></widget-display>
 <div id=pages [class.hideMenu]="!showMenu">
   <config
     [class.current]="currentPage === Pages.Config"

@@ -7,6 +7,15 @@ export class WeatherService {
   apikey: string;
   latitude: number;
   longitude: number;
+  _ratio: number;
+
+  get ratio(): number {
+    return +this._ratio;
+  }
+  set ratio(val: number) {
+    this._ratio = +val;
+    localStorage.setItem('ratio', this._ratio.toString());
+  }
 
   constructor() {
     let d = localStorage.getItem('data');
@@ -14,6 +23,7 @@ export class WeatherService {
     this.apikey = localStorage.getItem('apikey');
     this.latitude = +localStorage.getItem('latitude');
     this.longitude = +localStorage.getItem('longitude');
+    this.ratio = +localStorage.getItem('ratio') || 2;
   }
 
   getWeather(): Promise<ForecastIO> {
@@ -36,7 +46,7 @@ export class WeatherService {
     return new Promise(resolve => {
       let callback = 'apiCallback';
       let self = this;
-      window[callback] = function(weatherData: ForecastIO) {
+      window[callback] = function (weatherData: ForecastIO) {
         //Set the moonPhase for each day to the corresponding midnight hourly data.
         weatherData.hourly.data.forEach(h => {
           if (new Date(h.time * 1000).getHours() === 0) {  //midnight

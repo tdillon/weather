@@ -18,21 +18,15 @@ import {ConfigOption} from '../Option.interface'
  * Rain, Sleet, Snow, Hail icons for PrecipProbability? or can color denote? or icon for non-rain
  *
  * TODO Work List:
+ * Should prompt immediatly for API key if not entered yet, and produce no errors.
  * Figuring how hiding and showing of config options based on daily/hourly
  * Show 'alerts'.  in one of the corners?
- * Fix landscape styles
  * Clean up TODOs.
  * Clean up imports.
  *
  * TODO:Scaling
  * add a 'legend' for scales. e.g., degree sign for temp, % for percentages, etc.,
- * Ozone: what scale? same as wind speed questions.
- *
- * TODO:Themes
- * Add ordering to weather properties.
- *
- * TODO:Config
- * Add 'widget ratio' to the config screen
+ * Change pressure scale to show a '-' for each tenth of an inch and only scale out as needed.
  *
  */
 
@@ -51,12 +45,10 @@ export class WidgetDisplayComponent implements AfterViewInit, DoCheck {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   @Input() data: ForecastIO;
-  /** width to height */
-  widgetRatio = 2;
   @Input() theme: Theme;
+  @Input () ratio:number;
 
   private _pos: Positionings;
-
 
   ngAfterViewInit() {
     this.canvas = <HTMLCanvasElement>document.querySelector('canvas');
@@ -70,7 +62,7 @@ export class WidgetDisplayComponent implements AfterViewInit, DoCheck {
         this.theme,
         this.data,
         document.documentElement.clientWidth,
-        this.widgetRatio,
+        this.ratio,
         window.devicePixelRatio,
         text => this.ctx.measureText(text).width
       );
@@ -201,8 +193,6 @@ export class WidgetDisplayComponent implements AfterViewInit, DoCheck {
   }
 
   render() {
-    this.widgetRatio *= 1;
-
     this.canvas.width = this._pos.widget.width;
     this.canvas.height = this._pos.widget.height;
 

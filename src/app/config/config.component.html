@@ -7,6 +7,20 @@
   </h2>
 </div>
 
+
+<number-picker
+  #r
+  [class.show]="currentPicker === r"
+  [title]="'Widget Ratio'"
+  [value]="_weatherService.ratio"
+  [min]="1"
+  [max]="3"
+  [step]=".1"
+  (focus)="currentPicker = r"
+  (update)="onUpdate(_weatherService.ratio = $event)"
+  (cancel)="onUpdate(currentPicker = null, _weatherService.ratio = $event)"
+  (save)="onUpdate(currentPicker = null, _weatherService.ratio = $event)"></number-picker>
+
 <forecast-io-settings
   #fi
   [class.show]="currentPicker === fi"
