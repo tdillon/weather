@@ -38,46 +38,37 @@ theme-picker > .current {
   background: pink;
 }
 
+theme-picker > div{padding:8px;}
 
 
 .pickerGroup {}
-.pickerGroup > .header {opacity:0;}
-.pickerGroup.show > .header{opacity:1;}
+.pickerGroup > .header {opacity:0;height:0;padding:0;overflow:hidden;}
+.pickerGroup.show > .header{opacity:1;height:inherit;padding:8px;overflow:hidden;}
 .pickerGroup.show {}
 .pickerGroup > header {opacity:1;}
-.pickerGroup.show > header{opacity:0;}
-.pickerGroup.hide {}
+.pickerGroup.show > header{opacity:0;height:0;padding:0;overflow:hidden;}
+.pickerGroup.hide > .header {opacity:0;height:0;padding:0;overflow:hidden;}
 
 .pickerGroup:not(.show) > .pickerGroup > header {
   opacity:0;
+  height:0;padding:0;overflow:hidden;
 }
 
-.picker {opacity:0;}
-.pickerGroup.show > .picker,
+.picker {opacity:0;height:0;padding:0;overflow:hidden;}
+.pickerGroup.show > .picker:not(.hide),
 .picker.show {
   opacity:1;
+  height:inherit;overflow:hidden;
+}
+.pickerGroup.hide > .picker:not(.show) {
+  opacity:0;
+  height:0;padding:0;overflow:hidden;
 }
 
-.picker > header {opacity:1;}
-.picker > .edit {opacity:0;}
-.picker.show > header {opacity:0;}
-.picker.show > .edit {opacity:1;}
+.picker > header {opacity:1;height:inherit;padding:8px;overflow:hidden;}
+.picker > .edit {opacity:0;height:0;padding:0;overflow:hidden;}
+.picker.show > header {opacity:0;height:0;padding:0;overflow:hidden;}
+.picker.show > .edit {opacity:1;height:inherit;overflow:hidden;}
 
-
-.pickerGroup > .header,
-.pickerGroup.show > header ,
-.pickerGroup:not(.show) > .pickerGroup > header,
-.picker,
-.picker > .edit,
-.picker.show > header {
-  transition: opacity 0 0.5s ease-out;
-}
-
-.pickerGroup.show > .header,
-.pickerGroup > header,
-.pickerGroup.show > .picker,
-.picker.show ,
-.picker > header ,
-.picker.show > .edit {
-  transition: opacity .5s .5s ease-out;
-}
+.picker.show > .edit > *,
+.pickerGroup > header {padding:8px;}
