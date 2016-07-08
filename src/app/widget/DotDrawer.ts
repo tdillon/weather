@@ -36,17 +36,20 @@ export class DotDrawer {
     ctx.fill();
   }
 
-  static moon(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, color: string, moonPhase: number) {
+  static moon(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, color: Color, moonPhase: number) {
     var epsilon = .001;
+
     //Draw 'dark' portion of moon
+    let darkMoonColor = color.copyOf();
+    darkMoonColor.a = .2 * color.a;  //Set dark moon color to 20% alpha.
     ctx.beginPath();
-    ctx.fillStyle = '#333';  //TODO make configurable
+    ctx.fillStyle = darkMoonColor.rgba;
     ctx.arc(x, y, r, 0, 2 * Math.PI, false);
     ctx.fill();
 
     //Draw 'light' portion of moon
     ctx.beginPath();
-    ctx.fillStyle = color;
+    ctx.fillStyle = color.rgba;
 
     if (moonPhase < .25) {
       var mP = r * (.25 - moonPhase) * 4;

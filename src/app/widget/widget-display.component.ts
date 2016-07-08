@@ -16,6 +16,7 @@ import {ConfigOption} from '../Option.interface'
  * TODO:Dots
  * create 'ring' type
  * Rain, Sleet, Snow, Hail icons for PrecipProbability? or can color denote? or icon for non-rain
+ * Figure out moon dot secondary color.
  *
  * TODO Work List:
  * Should prompt immediatly for API key if not entered yet, and produce no errors.
@@ -160,7 +161,7 @@ export class WidgetDisplayComponent implements AfterViewInit, DoCheck {
 
         switch (c.title) {
           case 'moon':
-            DotDrawer.moon(this.ctx, curProp.x, curProp.y, (c.dot.radius.global ? this.theme.globals.dot.radius : c.dot.radius.value), (c.dot.color.global ? this.theme.globals.dot.color.rgba : c.dot.color.value.rgba), curSeg.moonPhase);
+            DotDrawer.moon(this.ctx, curProp.x, curProp.y, (c.dot.radius.global ? this.theme.globals.dot.radius : c.dot.radius.value), (c.dot.color.global ? this.theme.globals.dot.color : c.dot.color.value), curSeg.moonPhase);
             break;
           case 'windSpeed':
             DotDrawer.wind(this.ctx, curProp.x, curProp.y, (c.dot.radius.global ? this.theme.globals.dot.radius : c.dot.radius.value), (c.dot.color.global ? this.theme.globals.dot.color.rgba : c.dot.color.value.rgba), curSeg.windBearing);
