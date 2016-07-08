@@ -138,9 +138,6 @@ export class Positionings {
     let leftMostScale = 0;
     let rightMostScale = this.widget.right;
 
-    //TODO whether a scale is shown or not, should be configurable (themed)
-    //TODO for now if you have a weather prop, show the scale
-
     //TEMPERATURE
     if (this._ranges.temperature) {
       const pxPerDeg = (this.widget.height - Math.max(this._padding.bottom, this._theme.fontSize) - this._padding.top) / (this._ranges.temperature.max - this._ranges.temperature.min);
@@ -184,7 +181,6 @@ export class Positionings {
     }
 
 
-    // //TODO Percentage
 
 
     //WIND SPEED
@@ -272,24 +268,48 @@ export class Positionings {
       }));
     }
 
-    //Pressure
-    //TODO explain pressure's scale
+
+
+    /*
+     * Pressure - The pressure scale will be centered (50%) at 1ATM.
+     * The scale will increase in .1" increments until the maximum (deviation from 1ATM) is captured.
+     * Whole number inches will be displayed and '-' will be displayed for each .1".
+     */
     if (this._ranges.pressure) {
       const pxPerMB = (this.widget.height - Math.max(this._padding.bottom, this._theme.fontSize) - this._padding.top) / (this._ranges.pressure.max - this._ranges.pressure.min);
 
-      let scaleTexts: Array<number> = [30];
+      let scaleTexts: Array<{ display: string, value: number }> = [];
       let maxTextWidth = Number.MIN_SAFE_INTEGER, tempTextWidth;
       const ATM = 1013.25; //mbar
 
       const mbarPERinhg = 1000 / 100000 * 101325 / 760 * 25.4;  //mb -> bar -> pascal -> atm -> torr (inches of mm) -> inches of hg
-      let p = this._ranges.pressure
 
-      for (let band = 1; p.max > (30 + band) * mbarPERinhg && p.min < (30 + band) * mbarPERinhg; ++band) {
-        scaleTexts.push(30 + band);
-        scaleTexts.push(30 - band);
+      let p = this._ranges.pressure;
+
+      for (let hiBand = 30, lowBand = 29.9; p.max > hiBand * mbarPERinhg && p.min < lowBand * mbarPERinhg; hiBand += .1, lowBand -= .1) {
+        if (hiBand % 1) { //non-whole number
+          scaleTexts.push({ display: '-', value: hiBand });
+        } else {
+          scaleTexts.push({ display: hiBand.toString(), value: hiBand });
+        }
+        if (lowBand % 1) { //non-whole number
+          scaleTexts.push({ display: '-', value: lowBand });
+        } else {
+          scaleTexts.push({ display: lowBand.toString(), value: lowBand });
+        }
       }
 
-      maxTextWidth = scaleTexts.reduce((p, c) => Math.max(this.getTextWidth(c.toString()), p), 0);
+      for (let hiBand = 30, lowBand = 29.9; p.max > hiBand * mbarPERinhg && p.min < lowBand * mbarPERinhg; hiBand += .1, lowBand -= .1) {
+        [hiBand, lowBand].forEach(b => {
+          if (b % 1) { //non-whole number
+            scaleTexts.push({ display: '-', value: b });
+          } else {
+            scaleTexts.push({ display: b.toString(), value: b });
+          }
+        });
+      }
+
+      maxTextWidth = scaleTexts.reduce((p, c) => Math.max(this.getTextWidth(c.display), p), 0);
 
       let x = {
         type: ScaleType.Pressure,
@@ -311,10 +331,10 @@ export class Positionings {
       }
 
       scaleTexts.forEach(t => x.items.push({
-        value: t.toString(),
+        value: t.display,
         center: new Point(
           x.box.center.x,
-          x.box.top + (this._ranges.pressure.max - t * mbarPERinhg) * pxPerMB
+          x.box.top + (this._ranges.pressure.max - t.value * mbarPERinhg) * pxPerMB
         )
       }));
     }

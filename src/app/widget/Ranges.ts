@@ -52,9 +52,14 @@ export class Ranges {
       }
     });
 
-    if (this._pressure) {  //TODO explain how pressure gets scaled differently
+    /*
+     * Pressure - The pressure scale will be centered (50%) at 1ATM.
+     * The scale will increase in .1" increments until the maximum (deviation from 1ATM) is captured.
+     * Whole number inches will be displayed and '-' will be displayed for each .1".
+     */
+    if (this._pressure) {
       const ATM = 1013.25;  //1 ATM === 1013.25 mbar
-      const BAND_SIZE = 37;  //band_size is the number of mbars to get whole number of inhg plus any 'padding'
+      const BAND_SIZE = 5;  //band_size is the number of mbars to get to tenths of inhg plus any 'padding'
       const MAX_DEVIATION = Math.max(Math.abs(this._pressure.max - ATM), Math.abs(this._pressure.min - ATM));
 
       this._pressure.max = ATM + Math.ceil(MAX_DEVIATION / ATM) * BAND_SIZE;

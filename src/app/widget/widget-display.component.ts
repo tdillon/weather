@@ -26,7 +26,6 @@ import {ConfigOption} from '../Option.interface'
  *
  * TODO:Scaling
  * add a 'legend' for scales. e.g., degree sign for temp, % for percentages, etc.,
- * Change pressure scale to show a '-' for each tenth of an inch and only scale out as needed.
  *
  */
 
