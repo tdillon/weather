@@ -10,23 +10,25 @@ import {ConfigOption} from '../Option.interface'
 
 
 /*
- * TODO:MainGraph
- * RESEARCH: Padding: can we vary padding based on location and size of dots instead of largest dot only?
- *
- * TODO:Dots
- * create 'ring' type
- * Rain, Sleet, Snow, Hail icons for PrecipProbability? or can color denote? or icon for non-rain
- * Figure out moon dot secondary color.
- *
- * TODO Work List:
- * Should prompt immediatly for API key if not entered yet, and produce no errors.
- * Figuring how hiding and showing of config options based on daily/hourly
- * Show 'alerts'.  in one of the corners?
- * Clean up TODOs.
- * Clean up imports.
- *
- * TODO:Scaling
- * add a 'legend' for scales. e.g., degree sign for temp, % for percentages, etc.,
+ * TODO:Research
+ *  Padding: can we vary padding based on location and size of dots instead of largest dot only?
+ *  precipIntensityColor: is it legit?
+ *  Rain, Sleet, Snow, Hail icons for PrecipProbability? or can color denote? or icon for non-rain
+ * 
+ * TODO:Bugs
+ *  Figuring how hiding and showing of config options based on daily/hourly
+ *  Flip moon.
+ * 
+ * TODO:Feature
+ *  Should prompt immediatly for API key if not entered yet, and produce no errors.
+ *  create 'ring' type
+ *  Show 'alerts'.  in one of the corners?
+ *  add a 'legend' for scales. e.g., degree sign for temp, % for percentages, etc.,
+ *  Save off a data sample with name.  This will allow reloading varous datas for testing/features.
+ * 
+ * TODO:Code
+ *  Clean up TODOs.
+ *  Clean up imports.
  *
  */
 

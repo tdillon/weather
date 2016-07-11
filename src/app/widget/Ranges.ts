@@ -59,11 +59,10 @@ export class Ranges {
      */
     if (this._pressure) {
       const ATM = 1013.25;  //1 ATM === 1013.25 mbar
-      const BAND_SIZE = 5;  //band_size is the number of mbars to get to tenths of inhg plus any 'padding'
-      const MAX_DEVIATION = Math.max(Math.abs(this._pressure.max - ATM), Math.abs(this._pressure.min - ATM));
+      const MAX_DEVIATION = Math.max(3, Math.max(Math.abs(this._pressure.max - ATM), Math.abs(this._pressure.min - ATM)));  //Show at least 5 mbar +- 1ATM
 
-      this._pressure.max = ATM + Math.ceil(MAX_DEVIATION / ATM) * BAND_SIZE;
-      this._pressure.min = ATM - Math.ceil(MAX_DEVIATION / ATM) * BAND_SIZE;
+      this._pressure.max = ATM + MAX_DEVIATION;
+      this._pressure.min = ATM - MAX_DEVIATION;
     }
   }
 
