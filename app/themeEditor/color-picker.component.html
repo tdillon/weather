@@ -1,0 +1,46 @@
+<header (click)="onFocus()">
+  <h1>{{title}}</h1>
+  <h2 *ngIf="color">
+    <span [ngSwitch]="showalpha">
+      <template [ngSwitchCase]="true">{{color.rgba}}</template>
+      <template [ngSwitchCase]="false">{{color.rgb}}</template>
+    </span>
+  </h2>
+</header>
+<div class=edit *ngIf="color">
+  <div class=header>
+    <h1>
+      <span>{{title}}</span>
+      <input type=button title=Done value="&#10004;" (click)="onSave()">
+      <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+    </h1>
+    <h2 [ngSwitch]="showalpha">
+      <template [ngSwitchCase]="true">
+        {{oldColor.rgba}} - {{color.rgba}}
+        <div class=color [style.background]="true ? color.rgba : none"></div>
+      </template>
+      <template [ngSwitchCase]="false">
+        {{oldColor.rgb}} - {{color.rgb}}
+        <div class=color [style.background]="true ? color.rgb : none"></div>
+      </template>
+    </h2>
+  </div>
+  <div class=controls>
+    <div>
+      <label>Red: {{color.r}}</label>
+      <input #red (input)="onUpdate(color.r = red.value * 1)" [value]="color.r" type=range min=0 max=255 step=1>
+    </div>
+    <div>
+      <label>Green: {{color.g}}</label>
+      <input #green (input)="onUpdate(color.g = green.value * 1)" [value]="color.g" type=range min=0 max=255 step=1>
+    </div>
+    <div>
+      <label>Blue: {{color.b}}</label>
+      <input #blue (input)="onUpdate(color.b = blue.value * 1)" [value]="color.b" type=range min=0 max=255 step=1>
+    </div>
+    <div *ngIf="showalpha">
+      <label>Alpha: {{color.a}}</label>
+      <input #alpha (input)="onUpdate(color.a = alpha.value * 1)" [value]="color.a" type=range min=0 max=1 step=".1">
+    </div>
+  </div>
+</div>

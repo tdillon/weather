@@ -1,0 +1,122 @@
+<div class=header>
+  <h1>
+    <span [ngSwitch]="mode">
+      <template [ngSwitchCase]="ThemeCreatorMode.New">New</template>
+      <template [ngSwitchCase]="ThemeCreatorMode.Edit">Edit</template>
+      <template [ngSwitchCase]="ThemeCreatorMode.Copy">Copy</template>
+    </span>
+    Theme
+  </h1>
+  <h2>
+    <input type=button value=Save (click)="onSave()">
+    <input type=button value=Cancel (click)="onCancel()">
+    <input type=button value=Delete (click)="onDelete()" [hidden]="mode !== ThemeCreatorMode.Edit">
+  </h2>
+</div>
+<text-picker
+  #tn
+  [title]="'Theme Name'"
+  [value]="theme.name"
+  [class.show]="currentPicker === tn"
+  (focus)="currentPicker = tn"
+  (cancel)='currentPicker = null'
+  (save)="onUpdate(currentPicker = null, theme.name = $event)"></text-picker>
+<widget-type-picker
+  #wtp
+  [type]="theme.widgetType"
+  [class.show]="currentPicker === wtp"
+  (focus)="currentPicker = wtp"
+  (update)="onUpdate(theme.widgetType = $event)"
+  (cancel)="onUpdate(currentPicker = null, theme.widgetType = $event)"
+  (save)="onUpdate(currentPicker = null, theme.widgetType = $event)"></widget-type-picker>
+
+<number-picker
+  #fs
+  [class.show]="currentPicker === fs"
+  [title]="'Font Size'"
+  [value]="theme.fontSize"
+  [min]="1"
+  [max]="60"
+  [step]="1"
+  (focus)="currentPicker = fs"
+  (update)="onUpdate(theme.fontSize = $event)"
+  (cancel)="onUpdate(currentPicker = null, theme.fontSize = $event)"
+  (save)="onUpdate(currentPicker = null, theme.fontSize = $event)"></number-picker>
+
+<default-theme-settings
+  #dts
+  [default]="theme.globals"
+  [class.show]="currentPicker == dts"
+  (focus)="currentPicker = dts"
+  (update)="onUpdate()"
+  (cancel)='currentPicker = null'
+  (save)="currentPicker = null"></default-theme-settings>
+
+
+<cloud-cover-location-picker
+  #cclp
+  [location]="theme.cloudCoverLocation"
+  [class.show]="currentPicker === cclp"
+  (focus)="currentPicker = cclp"
+  (update)="onUpdate(theme.cloudCoverLocation = $event)"
+  (cancel)="onUpdate(currentPicker = null, theme.cloudCoverLocation = $event)"
+  (save)="onUpdate(currentPicker = null, theme.cloudCoverLocation = $event)"></cloud-cover-location-picker>
+
+
+<boolean-picker
+  [title]="'Daylight Visibility'"
+  [subtitle]="'Show daytime cloud coverage?'"
+  [value]="theme.daylight"
+  (update)="updateDaylight($event)"></boolean-picker>
+<color-picker
+  #dc
+  [class.hide]="!theme.daylight"
+  [title]="'Daylight Color'"
+  [color]="theme.daylight"
+  [showalpha]="false"
+  [class.show]="currentPicker === dc"
+  (focus)="currentPicker = dc"
+  (update)="onUpdate(theme.daylight = $event)"
+  (cancel)="onUpdate(currentPicker = null, theme.daylight = $event)"
+  (save)="onUpdate(currentPicker = null, theme.daylight = $event)"></color-picker>
+
+
+<boolean-picker
+  [title]="'Show Night Sky?'"
+  [subtitle]="'Show nighttime cloud coverage?'"
+  [value]="theme.nightlight"
+  (update)="updateNightlight($event)"></boolean-picker>
+<color-picker
+  #nc
+  [class.hide]="!theme.nightlight"
+  [title]="'Night Sky Color'"
+  [color]="theme.nightlight"
+  [showalpha]="false"
+  [class.show]="currentPicker === nc"
+  (focus)="currentPicker = nc"
+  (update)="onUpdate(theme.nightlight = $event)"
+  (cancel)="onUpdate(currentPicker = null, theme.nightlight = $event)"
+  (save)="onUpdate(currentPicker = null, theme.nightlight = $event)"></color-picker>
+
+
+<weather-property-picker
+  #wpp
+  class=prefContainer
+  [class.show]="currentPicker === wpp"
+  [properties]="theme.options"
+  (focus)="currentPicker = wpp"
+  (update)="onUpdate($event)"
+  (cancel)="currentPicker = null"
+  (save)="currentPicker = null"></weather-property-picker>
+<weather-property-settings
+  *ngFor="let p of theme.options"
+  [title]="p.title"
+  [default]="theme.globals"
+  [property]="p"
+  [class.show]="currentPicker === p"
+  (focus)="currentPicker = p"
+  (update)="onUpdate($event)"
+  (cancel)="currentPicker = null"
+  (save)="currentPicker = null"
+  (up)="move('up', $event)"
+  (down)="move('down', $event)"></weather-property-settings>

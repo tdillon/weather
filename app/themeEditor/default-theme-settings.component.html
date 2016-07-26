@@ -1,0 +1,69 @@
+<header (click)="onFocus()">
+  <h1>Default Theme Settings</h1>
+  <h2>Click to set values that are used by default for dots and segments.</h2>
+</header>
+<div class=header>
+  <h1>Here are the default theme settings</h1>
+  <h2>TODO</h2>
+  <input type=button title=Done value="&#10004;" (click)="onSaveMe()">
+  <input type=button title=Cancel value="&#10008;" (click)="onCancelMe()">
+</div>
+<number-picker
+  #dr
+  [class.show]="currentPicker === dr"
+  [title]="'Dot Radius'"
+  [value]="default.dot.radius"
+  [min]="1"
+  [max]="60"
+  [step]="1"
+  (focus)="onFocus(dr)"
+  (update)="onUpdate(default.dot.radius = $event)"
+  (cancel)="onCancel(default.dot.radius = $event)"
+  (save)="onSave(default.dot.radius = $event)"></number-picker>
+<color-picker
+  #dc
+  [class.show]="currentPicker === dc"
+  [title]="'Dot Color'"
+  [color]="default.dot.color"
+  (focus)="onFocus(dc)"
+  (update)="onUpdate(default.dot.color = $event)"
+  (cancel)="onCancel(default.dot.color = $event)"
+  (save)="onSave(default.dot.color = $event)"></color-picker>
+<boolean-picker
+  [title]="'Segment Visibility'"
+  [subtitle]="'Are segments visible?'"
+  [value]="default.segment.show"
+  (update)="onUpdate(default.segment.show = $event)"></boolean-picker>
+<number-picker
+  #swa
+  [class.show]="currentPicker === swa"
+  [title]="'Segment Width Angle'"
+  [value]="default.segment.angle"
+  [min]="0"
+  [max]="90"
+  [step]="1"
+  (focus)="onFocus(swa)"
+  (update)="onUpdate(default.segment.angle = $event)"
+  (cancel)="onCancel(default.segment.angle = $event)"
+  (save)="onSave(default.segment.angle = $event)"></number-picker>
+<number-picker
+  #sp
+  [class.show]="currentPicker === sp"
+  [title]="'Segment Padding'"
+  [value]="default.segment.padding"
+  [min]="0"
+  [max]="10"
+  [step]="1"
+  (focus)="onFocus(sp)"
+  (update)="onUpdate(default.segment.padding = $event)"
+  (cancel)="onCancel(default.segment.padding = $event)"
+  (save)="onSave(default.segment.padding = $event)"></number-picker>
+<color-picker
+  #sc
+  [class.show]="currentPicker === sc"
+  [title]="'Segment Color'"
+  [color]="default.segment.color"
+  (focus)="onFocus(sc)"
+  (update)="onUpdate(default.segment.color = $event)"
+  (cancel)="onCancel(default.segment.color = $event)"
+  (save)="onSave(default.segment.color = $event)"></color-picker>

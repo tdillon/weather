@@ -1,0 +1,22 @@
+<header (click)="onFocus()">
+  <h1>Widget Type</h1>
+  <h2>{{WidgetType[type]}}</h2>
+</header>
+<div class=edit>
+  <div class=header>
+    <h1>
+      <span>Widget Type</span>
+      <input type=button title=Done value="&#10004;" (click)="onSave()">
+      <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+    </h1>
+    <h2>{{WidgetType[oldType]}} - {{WidgetType[type]}}</h2>
+  </div>
+  <div class=controls>
+    <label>
+      <input type="radio" name="type" (change)="onUpdate(type = WidgetType.Hourly)" [checked]="type === WidgetType.Hourly" [value]="WidgetType.Hourly"> Hourly
+    </label>
+    <label>
+      <input type="radio" name="type" (change)="onUpdate(type = WidgetType.Daily)" [checked]="type === WidgetType.Daily" [value]="WidgetType.Daily"> Daily
+    </label>
+  </div>
+</div>

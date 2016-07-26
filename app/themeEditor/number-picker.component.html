@@ -1,0 +1,17 @@
+<header (click)="onFocus()">
+  <h1>{{title}}</h1>
+  <h2>{{value}}</h2>
+</header>
+<div class=edit>
+  <div class=header>
+    <h1>
+      <span>{{title}}</span>
+      <input type=button title=Done value="&#10004;" (click)="onSave()">
+      <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+    </h1>
+    <h2>{{oldValue}} - {{value}}</h2>
+  </div>
+  <div class=controls>
+    <input #numberVal (input)="onUpdate(value = numberVal.value)" [value]="value" type=range [min]="min" [max]="max" [step]="step">
+  </div>
+</div>
