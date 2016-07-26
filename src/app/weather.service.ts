@@ -4,7 +4,7 @@ import {ForecastIO} from "./forecast.io.interface";
 @Injectable()
 export class WeatherService {
   data: ForecastIO;
-  apikey: string;
+  api = `c5f42d85c93f3a489363a8f410a78b57`;
   latitude: number;
   longitude: number;
   _ratio: number;
@@ -20,7 +20,6 @@ export class WeatherService {
   constructor() {
     let d = localStorage.getItem('data');
     this.data = (d ? JSON.parse(d) : null);
-    this.apikey = localStorage.getItem('apikey');
     this.latitude = +localStorage.getItem('latitude');
     this.longitude = +localStorage.getItem('longitude');
     this.ratio = +localStorage.getItem('ratio') || 2;
@@ -29,19 +28,38 @@ export class WeatherService {
   getWeather(): Promise<ForecastIO> {
     if (this.data) {
       return new Promise((resolve, reject) => resolve(this.data));
-    } else if (this.apikey && this.latitude && this.longitude) {
+    } else if (this.latitude && this.longitude) {
       return this.refresh();
     } else {
-      return new Promise((resolve, reject) => {
-        reject();
-      });
+      return this.getLocation()
+        .then(l => new Promise(resolve => { this.latitude = l.latitude, this.longitude = l.longitude; resolve(); }))
+        .then(() => this.refresh());
     }
   }
 
+
+  getLocation(): Promise<{ latitude: number, longitude: number }> {
+    return new Promise(resolve => {
+      navigator.geolocation.getCurrentPosition(
+        //success
+        p => resolve(p.coords),
+        //error
+        () => resolve({ latitude: 39.828357, longitude: -98.579460 }),
+        //options
+        { enableHighAccuracy: true }
+      );
+    });
+  }
+
+
+  saveLocation(location: { latitude: number, longitude: number }) {
+    localStorage.setItem('latitude', location.latitude.toString());
+    localStorage.setItem('longitude', location.longitude.toString());
+  }
+
+
   refresh(): Promise<ForecastIO> {
-    localStorage.setItem('apikey', this.apikey);
-    localStorage.setItem('latitude', this.latitude.toString());
-    localStorage.setItem('longitude', this.longitude.toString());
+    this.saveLocation(this);
 
     return new Promise(resolve => {
       let callback = 'apiCallback';
@@ -49,7 +67,7 @@ export class WeatherService {
       window[callback] = function (weatherData: ForecastIO) {
         //Set the moonPhase for each day to the corresponding midnight hourly data.
         weatherData.hourly.data.forEach(h => {
-          if (new Date(h.time * 1000).getHours() === 0) {  //midnight
+          if (new Date(h.time * 1000).getUTCHours() + weatherData.offset === 0) {  //midnight
             h.moonPhase = weatherData.daily.data.find(d => d.time === h.time).moonPhase;  //add moonPhase to midnight hour
           }
         });
@@ -58,7 +76,7 @@ export class WeatherService {
         resolve(weatherData);
       }
       let apiScript = document.createElement('script');
-      apiScript.src = `https://api.forecast.io/forecast/${this.apikey}/${this.latitude},${this.longitude}?callback=${callback}&exclude=flags,minutely`;
+      apiScript.src = `https://api.forecast.io/forecast/${this.api}/${this.latitude},${this.longitude}?callback=${callback}&exclude=flags,minutely`;
       document.body.appendChild(apiScript);
     });
   }

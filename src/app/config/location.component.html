@@ -1,0 +1,33 @@
+<header (click)="onFocus()">
+  <h1>Set location</h1>
+  <h2>({{dao.latitude}}, {{dao.longitude}})</h2>
+</header>
+<div class=header>
+  <h1>Set location</h1>
+  <h2>
+    ({{dao.latitude}}, {{dao.longitude}})
+    <input type=button title=Done value="&#10004;" (click)="onSave()">
+    <input type=button title=Cancel value="&#10008;" (click)="onCancel()">
+  </h2>
+</div>
+<text-picker 
+  #lat
+  [title]="'Latitude'" 
+  [value]="dao.latitude" 
+  [class.show]="currentPicker === lat" 
+  (focus)="currentPicker = lat"
+  (cancel)='currentPicker = null' 
+  (save)="onNull(currentPicker = null, dao.latitude = +$event)">
+</text-picker>
+
+<text-picker 
+  #lon
+  [title]="'Longitude'" 
+  [value]="dao.longitude" 
+  [class.show]="currentPicker === lon" 
+  (focus)="currentPicker = lon"
+  (cancel)='currentPicker = null' 
+  (save)="onNull(currentPicker = null, dao.longitude = +$event)">
+</text-picker>
+
+<current-location (update)="onNull(dao.longitude = $event.longitude, dao.latitude = $event.latitude)"></current-location>

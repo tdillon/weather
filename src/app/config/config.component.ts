@@ -2,7 +2,7 @@ import {BooleanPickerComponent} from "../themeEditor/boolean-picker.component";
 import {ForecastIoRefresherComponent} from "./forecast.io.refresher.component";
 import {Component, Output, EventEmitter} from '@angular/core'
 import {ForecastIO} from '../forecast.io.interface'
-import {ForecastIoSettingsComponent} from './forecast.io.settings.component'
+import {LocationComponent} from './location.component'
 import {NumberPickerComponent} from '../themeEditor/number-picker.component'
 import {WeatherService} from '../weather.service'
 
@@ -16,7 +16,7 @@ import {WeatherService} from '../weather.service'
     '[class.pickerGroup]': 'true'
   },
   templateUrl: 'app/config/config.component.html',
-  directives: [ForecastIoSettingsComponent, ForecastIoRefresherComponent, BooleanPickerComponent, NumberPickerComponent],
+  directives: [LocationComponent, ForecastIoRefresherComponent, BooleanPickerComponent, NumberPickerComponent],
   styles: [':host{display: block;}']
 })
 export class ConfigComponent {
@@ -26,7 +26,7 @@ export class ConfigComponent {
   currentPicker: any;
   fullscreen = false;
 
-  constructor(private _weatherService:WeatherService) {
+  constructor(private _weatherService: WeatherService) {
     this.currentPicker = null;
   }
 

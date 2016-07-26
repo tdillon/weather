@@ -18,6 +18,7 @@ import {ConfigOption} from '../Option.interface'
  * TODO:Bugs
  *  Figuring how hiding and showing of config options based on daily/hourly
  *  Flip moon.
+ *  Handle timezone.  e.g. lat/lon set to Hawaii, but local clock is eastern timezone.  Show times for Hawaii, not local.
  * 
  * TODO:Feature
  *  Should prompt immediatly for API key if not entered yet, and produce no errors.
